@@ -1,0 +1,58 @@
+<div class="bg">
+
+  <div class="container ">
+    <div class="row">
+      <div class="col-sm-9 col-md-7 col-lg-5 mx-auto ">
+        <div class="card card-signin my-5">
+          <div class="card-body">
+            <h3 class="card-title text-center">
+              <a routerLink="/inicio" href="#"> <i class="fas fa-tasks fa-2x "></i>
+              </a>  Sistema de Requisições </h3>
+            <div class="form-signin">
+              <form #userForm="ngForm">
+                <fieldset>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Email</label>
+                    <input class="form-control" #emailElement #emailControl="ngModel" type="text" placeholder="Informe o Email"
+                      [(ngModel)]="email" name="email" maxlength="60" email required>
+                    <span [hidden]="emailControl.pristine || !emailControl.errors?.required" class="text-danger">Email
+                      obrigatório!</span>
+                    <span [hidden]="emailControl.pristine || !emailControl.errors?.email" class="text-danger">Email
+                      inválido!</span>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Senha</label>
+                    <input name="password" #passwordElement #passwordControl="ngModel" [(ngModel)]="senha" type="password"
+                      class="form-control" id="exampleInputPassword1" placeholder="Senha" required minlength="6"
+                      maxlength="30">
+                    <span [hidden]="passwordControl.pristine || !passwordControl.errors?.required" class="text-danger">Senha
+                      obrigatória!</span>
+                  </div>
+                  <div class="text-center">
+                    <button type="submit" class="btn btn-info btn-block" (click)="signin()">
+                      <i class="fas fa-sign-in-alt"></i> Logar</button>
+
+                    <h6 class="text-center"><strong>OU</strong> </h6>
+                    <button type="submit" class="btn btn-lg btn-success btn-block text-uppercase">
+                      <i class="far fa-envelope"></i> Recuperar</button>
+                  </div>
+                </fieldset>
+                <br>
+                <div class="alert alert-dismissible alert-danger" *ngIf="msg">
+                  {{msg}}
+                </div>
+                <div class="alert alert-dismissible alert-info" *ngIf="emailEnviado">
+                  Foi enviando um email para <strong>{{email}}</strong>
+                </div>
+              </form>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
