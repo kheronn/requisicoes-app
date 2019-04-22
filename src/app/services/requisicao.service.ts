@@ -9,6 +9,6 @@ import { AngularFirestore } from '@angular/fire/firestore';
 export class RequisicaoService extends ServiceFirebase<Requisicao> {
 
   constructor(firestore: AngularFirestore) {
-    super(Requisicao, firestore, 'publicacoes');
+    super(Requisicao, firestore, 'requisicoes');
   }
 }
