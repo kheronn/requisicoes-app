@@ -11,4 +11,6 @@ export class FuncionarioService extends ServiceFirebase<Funcionario> {
   constructor(firestore: AngularFirestore) {
     super(Funcionario, firestore, 'funcionarios');
   }
+
+
 }

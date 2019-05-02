@@ -1,3 +1,4 @@
+import { MenuComponent } from './components/admin/menu/menu.component';
 // Core Angular
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -22,6 +23,7 @@ import { LoginComponent } from './components/public/login/login.component';
   declarations: [
     AppComponent,
     LoginComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,
