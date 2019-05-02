@@ -7,6 +7,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'admin/painel',  loadChildren: './components/admin/painel/painel.module#PainelModule'  },
   { path: 'admin/funcionario',  loadChildren: './components/admin/funcionario/funcionario.module#FuncionarioModule'  },
+  { path: 'admin/departamento',  loadChildren: './components/admin/departamento/departamento.module#DepartamentoModule'  },
 
 ];
 
