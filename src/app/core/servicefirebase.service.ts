@@ -43,8 +43,8 @@ export abstract class ServiceFirebase<T extends Model> implements ICrud<T> {
       })
   }
 
-  delete(id: string): void {
-    this.ref.doc(id).delete();
+  delete(id: string):Promise<void> {
+    return this.ref.doc(id).delete();
   }
 
   docToClass(snapshotDoc): T {
