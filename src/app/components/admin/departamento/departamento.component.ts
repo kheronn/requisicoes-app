@@ -17,10 +17,10 @@ export class DepartamentoComponent implements OnInit {
   displayDialogDepartamento: boolean;
   form: FormGroup;
 
-  constructor(private departamentotoService: DepartamentoService, private fb: FormBuilder) { }
+  constructor(private departamentoService: DepartamentoService, private fb: FormBuilder) { }
 
   ngOnInit() {
-    this.departamentos$ = this.departamentotoService.list()
+    this.departamentos$ = this.departamentoService.list()
     this.configForm()
   }
 
@@ -33,7 +33,7 @@ export class DepartamentoComponent implements OnInit {
   }
 
   add() {
-    this.form.reset()
+    this.form.reset();
     this.edit = false;
     this.displayDialogDepartamento = true;
   }
@@ -41,20 +41,20 @@ export class DepartamentoComponent implements OnInit {
   selecionaDepartamento(depto: Departamento) {
     this.edit = true;
     this.displayDialogDepartamento = true;
-    this.form.setValue(depto)
+    this.form.setValue(depto);
   }
 
   save() {
-    this.departamentotoService.createOrUpdate(this.form.value)
+    this.departamentoService.createOrUpdate(this.form.value)
       .then(() => {
         this.displayDialogDepartamento = false;
-        Swal.fire('Deparatamento salvo/atualizado com sucesso', '', 'success')
+        Swal.fire(`Departamento ${!this.edit ? 'salvo' : 'atualizado'} com sucesso.`, '', 'success')
       })
       .catch((erro) => {
         this.displayDialogDepartamento = false;
-        Swal.fire('Erro ao salvar /atualizar o departamento', `Detalhes: ${erro}`, 'error')
+        Swal.fire(`Erro ao ${!this.edit ? 'salvo' : 'atualizado'} o departamento.`, `Detalhes: ${erro}`, 'error')
       })
-      this.form.reset()
+    this.form.reset()
   }
 
   delete(depto: Departamento) {
@@ -67,7 +67,7 @@ export class DepartamentoComponent implements OnInit {
       cancelButtonText: 'Não'
     }).then((result) => {
       if (result.value) {
-        this.departamentotoService.delete(depto.id)
+        this.departamentoService.delete(depto.id)
           .then(() => {
             Swal.fire('Departamento excluído com sucesso!', '', 'success')
           })
