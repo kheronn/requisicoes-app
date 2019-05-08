@@ -1,13 +1,15 @@
+import { FilterDepartamentoPipe } from './../../../pipes/filter.pipe';
+import { ComumModule } from './../../../modules/comum.module';
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-
+import { NgSelectModule } from '@ng-select/ng-select';
 import { FuncionarioRoutingModule } from './funcionario-routing.module';
 import { FuncionarioComponent } from './funcionario.component';
 
 @NgModule({
-  declarations: [FuncionarioComponent],
+  declarations: [FuncionarioComponent, FilterDepartamentoPipe],
   imports: [
-    CommonModule,
+    ComumModule,
+    NgSelectModule,
     FuncionarioRoutingModule
   ]
 })

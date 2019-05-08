@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PrimeNGModule } from './primeng.modules';
 
 @NgModule({
@@ -12,6 +12,7 @@ import { PrimeNGModule } from './primeng.modules';
   exports:[
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     PrimeNGModule
   ],
   declarations: []
