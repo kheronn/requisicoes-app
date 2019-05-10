@@ -12,5 +12,11 @@ export class FuncionarioService extends ServiceFirebase<Funcionario> {
     super(Funcionario, firestore, 'funcionarios');
   }
 
+  getFuncionarioLogado(email: string) {
+    return this.firestore.collection<Funcionario>('funcionarios', ref =>
+      ref.where('email', '==', email)
+    ).valueChanges()
+  }
+
 
 }

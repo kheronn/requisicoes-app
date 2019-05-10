@@ -6,8 +6,9 @@ import { Model } from '../core/model';
 
 export class Requisicao extends Model {
   solicitante: Funcionario;
-  dataAbertura: Date;
-  ultimaAtualizacao: Date;
+  dataAbertura: any;
+  ultimaAtualizacao: any;
+  descricao: string;
   status: string;
   destino: Departamento;
   movimentacoes: Movimentacao[];
@@ -16,7 +17,7 @@ export class Requisicao extends Model {
 
 export class Movimentacao extends Model {
   funcionario: Funcionario;
-  dataHora: Date;
+  dataHora: any;
   status: string
   descricao: string;
 }

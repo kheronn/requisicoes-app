@@ -8,7 +8,8 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'admin/painel', loadChildren: './components/admin/painel/painel.module#PainelModule', canActivate: [AuthguardService]},
   { path: 'admin/funcionario', loadChildren: './components/admin/funcionario/funcionario.module#FuncionarioModule', canActivate: [AuthguardService]},
-  { path: 'admin/departamento', loadChildren: './components/admin/departamento/departamento.module#DepartamentoModule', canActivate: [AuthguardService] },
+  { path: 'admin/departamento', loadChildren: './components/admin/departamento/departamento.module#DepartamentoModule', canActivate: [AuthguardService]},
+  { path: 'admin/requisicao', loadChildren: './components/admin/requisicao/requisicao.module#RequisicaoModule', canActivate: [AuthguardService]}
 
 ];
 
