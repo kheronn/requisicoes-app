@@ -1,21 +1,20 @@
-
 .ng-invalid:not(form) {
-  background-color: rgb(235, 185, 185);
+    background-color: rgb(235, 185, 185);
 }
 
 .ui-grid-row div {
-  padding: 4px 10px
+    padding: 4px 10px
 }
 
 .ui-grid-row div label {
-  font-weight: bold;
+    font-weight: bold;
 }
 
-.col-centered{
-  float: none;
-  margin: 0 auto;
+.col-centered {
+    float: none;
+    margin: 0 auto;
 }
 
-.btn{
-  margin: 5px;
+.btn {
+    margin: 5px;
 }

@@ -55,7 +55,8 @@ export class RequisicaoComponent implements OnInit {
       dataAbertura: new FormControl(''),
       ultimaAtualizacao: new FormControl(''),
       status: new FormControl(''),
-      descricao: new FormControl('', Validators.required)
+      descricao: new FormControl('', Validators.required),
+      movimentacoes: new FormControl('')
     })
   }
 
@@ -69,9 +70,10 @@ export class RequisicaoComponent implements OnInit {
   setValorPadrao() {
     this.form.patchValue({
       solicitante: this.funcionarioLogado,
-      status: 'aberto',
+      status: 'Aberto',
       dataAbertura: new Date(),
-      ultimaAtualizacao: new Date()
+      ultimaAtualizacao: new Date(),
+      movimentacoes: []
     })
   }
 
