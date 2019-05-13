@@ -55,7 +55,7 @@
 </div>
 
 
-<p-dialog header="Dados do funcionário" [minWidth]="600" [contentStyle]="{'overflow':'visible'}"
+<p-dialog header="Dados da Requisição" [minWidth]="600" [contentStyle]="{'overflow':'visible'}"
   [(visible)]="displayDialogRequisicao" [responsive]="true" [modal]="true">
   <div class="ui-grid ui-grid-responsive ui-fluid" *ngIf="form.value">
     <form [formGroup]="form">
@@ -76,7 +76,6 @@
           <textarea rows="5" cols="30" pInputTextarea formControlName="descricao"></textarea>
         </div>
       </div>
-
     </form>
   </div>
   <p-footer>

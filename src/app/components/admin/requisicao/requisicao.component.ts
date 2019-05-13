@@ -37,8 +37,8 @@ export class RequisicaoComponent implements OnInit {
     this.recuperaFuncionario()
   }
 
-  recuperaFuncionario() {
-    this.auth.authUser()
+  async recuperaFuncionario() {
+    await this.auth.authUser()
       .subscribe(dados => {
         this.funcionarioService.getFuncionarioLogado(dados.email)
           .subscribe(funcionarios => {
@@ -85,7 +85,7 @@ export class RequisicaoComponent implements OnInit {
     this.requisicaoService.createOrUpdate(this.form.value)
       .then(() => {
         this.displayDialogRequisicao = false;
-        Swal.fire(`Funcionário ${!this.edit ? 'salvo' : 'atualizado'} com sucesso.`, '', 'success')
+        Swal.fire(`Requisição ${!this.edit ? 'salvo' : 'atualizado'} com sucesso.`, '', 'success')
         this.displayDialogRequisicao = false;
       })
       .catch((erro) => {
