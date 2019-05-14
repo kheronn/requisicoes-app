@@ -48,7 +48,7 @@
   </div>
 </div>
 
-<app-movimentacao></app-movimentacao>
+<app-movimentacao *ngIf="funcionarioLogado" [funcionarioLogado]="funcionarioLogado"></app-movimentacao>
 
 
 <p-dialog header="Dados da Requisição" [minWidth]="600" [contentStyle]="{'overflow':'visible'}"

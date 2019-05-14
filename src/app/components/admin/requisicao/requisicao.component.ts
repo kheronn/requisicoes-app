@@ -42,7 +42,7 @@ export class RequisicaoComponent implements OnInit {
       .subscribe(dados => {
         this.funcionarioService.getFuncionarioLogado(dados.email)
           .subscribe(funcionarios => {
-            this.funcionarioLogado = funcionarios[0]
+            this.funcionarioLogado = funcionarios[0];
             this.requisicoes$ = this.requisicaoService.list()
               .pipe(
                 map((reqs: Requisicao[]) => reqs.filter(r => r.solicitante.email === this.funcionarioLogado.email))
