@@ -14,13 +14,13 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let movimento of movimentacoes">
-          <td class="text-center">{{movimento.dataHora.toDate() | date : 'dd/MM/yyyy HH:mm'}}</td>
+        <tr *ngFor="let movimento of movimentacoes; index as i">
+          <td class="text-center">{{movimento.dataHora.seconds * 1000 | date : 'dd/MM/yyyy HH:mm'}}</td>
           <td class="text-center">{{movimento.funcionario.nome}}</td>
           <td class="text-center">{{movimento.status}}</td>
           <td class="text-center">
             <div *ngIf="funcionarioLogado.email === movimento.funcionario.email">
-              <button type="button" (click)="selecionaMovimento(movimento)" class="btn btn-success ">
+              <button type="button" (click)="selecionaMovimento(movimento,i)" class="btn btn-success ">
                 <i class="fas fa-edit"></i>
               </button>
               <button type="button" (click)="delete(movimento)" class="btn btn-danger">

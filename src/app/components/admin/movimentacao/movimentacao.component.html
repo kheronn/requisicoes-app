@@ -19,7 +19,7 @@
         <tbody>
           <tr *ngFor="let requisicao of requisicoes$ | async ">
             <td class="text-center">{{requisicao.dataAbertura?.toDate() | date : 'dd/MM/yyyy HH:mm'}}</td>
-            <td class="text-center">{{requisicao.ultimaAtualizacao?.toDate() | date : 'dd/MM/yyyy HH:mm'}}</td>
+            <td class="text-center">{{requisicao.ultimaAtualizacao?.seconds * 1000  | date : 'dd/MM/yyyy HH:mm' }}</td>
             <td class="text-center">{{requisicao.destino.nome}}</td>
             <td class="text-center">{{requisicao.status}}</td>
             <td class="text-center">

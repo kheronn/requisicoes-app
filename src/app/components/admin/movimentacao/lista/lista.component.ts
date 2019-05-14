@@ -24,6 +24,7 @@ export class ListaComponent implements OnInit {
   displayDialogMovimentacao: boolean;
   form: FormGroup;
   edit: boolean;
+  indexMovimentacoes: number;
 
   constructor(
     private requisicaoService: RequisicaoService,
@@ -46,10 +47,11 @@ export class ListaComponent implements OnInit {
     })
   }
 
-  selecionaMovimento(mov: Movimentacao) {
+  selecionaMovimento(mov: Movimentacao, index: number) {
     this.edit = true;
     this.displayDialogMovimentacao = true;
     this.form.setValue(mov);
+    this.indexMovimentacoes = index
   }
 
 
@@ -58,18 +60,18 @@ export class ListaComponent implements OnInit {
   }
 
   save() {
-    this.movimentacoes.push(this.form.value);
+    this.movimentacoes[this.indexMovimentacoes] = this.form.value
     this.requisicaoSelecionada.movimentacoes = this.movimentacoes;
     this.requisicaoSelecionada.status = this.form.controls['status'].value
     this.requisicaoSelecionada.ultimaAtualizacao = new Date();
     this.requisicaoService.createOrUpdate(this.requisicaoSelecionada)
       .then(() => {
         this.displayDialogMovimentacao = false;
-        Swal.fire(`Requisição ${!this.edit ? 'salvo' : 'atualizado'} com sucesso.`, '', 'success');
+        Swal.fire(`Movimentação ${!this.edit ? 'salvo' : 'atualizado'} com sucesso.`, '', 'success');
       })
       .catch((erro) => {
         this.displayDialogMovimentacao = true;
-        Swal.fire(`Erro ao ${!this.edit ? 'salvo' : 'atualizado'} o Requisição.`, `Detalhes: ${erro}`, 'error');
+        Swal.fire(`Erro ao ${!this.edit ? 'salvo' : 'atualizado'} o Movimentação.`, `Detalhes: ${erro}`, 'error');
       })
     this.form.reset()
   }
@@ -77,7 +79,7 @@ export class ListaComponent implements OnInit {
   delete(mov: Movimentacao) {
     const movs = this.remove(this.movimentacoes, mov)
     Swal.fire({
-      title: 'Confirma a exclusão do Requisição?',
+      title: 'Confirma a exclusão da Movimentação?',
       text: "",
       type: 'warning',
       showCancelButton: true,
@@ -88,7 +90,7 @@ export class ListaComponent implements OnInit {
         this.requisicaoSelecionada.movimentacoes = movs;
         this.requisicaoService.createOrUpdate(this.requisicaoSelecionada)
           .then(() => {
-            Swal.fire('Requisição excluído com sucesso!', '', 'success')
+            Swal.fire('Movimentação excluída com sucesso!', '', 'success')
             this.movimentacoes = movs;
           })
       }
