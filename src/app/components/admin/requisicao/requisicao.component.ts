@@ -9,6 +9,7 @@ import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
 import { RequisicaoService } from 'src/app/services/requisicao.service';
 import { DepartamentoService } from 'src/app/services/departamento.service';
 import Swal from 'sweetalert2';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-requisicao',
@@ -31,7 +32,6 @@ export class RequisicaoComponent implements OnInit {
     private fb: FormBuilder) { }
 
   ngOnInit() {
-    this.requisicoes$ = this.requisicaoService.list();
     this.departamentos$ = this.departamentoService.list();
     this.configForm();
     this.recuperaFuncionario()
@@ -43,7 +43,12 @@ export class RequisicaoComponent implements OnInit {
         this.funcionarioService.getFuncionarioLogado(dados.email)
           .subscribe(funcionarios => {
             this.funcionarioLogado = funcionarios[0]
+            this.requisicoes$ = this.requisicaoService.list()
+              .pipe(
+                map((reqs: Requisicao[]) => reqs.filter(r => r.solicitante.email === this.funcionarioLogado.email))
+              )
           })
+
       })
   }
 

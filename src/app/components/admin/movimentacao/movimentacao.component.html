@@ -31,7 +31,7 @@
               <button type="button" (click)="add(requisicao)" class="btn btn-info">
                 <i class="fa fa-plus-circle"></i>
               </button>
-              <button type="button" (click)="verRequisicao(requisicao)" class="btn btn-success">
+              <button type="button" (click)="verMovimentacoes(requisicao)" class="btn btn-success">
                 <i class="far fa-list-alt"></i>
               </button>
             </td>
@@ -99,3 +99,6 @@
     </div>
   </p-footer>
 </p-dialog>
+
+<app-lista [displayDialogMovimentacoes]="displayDialogMovimentacoes" [movimentacoes]="movimentacoes"
+  [requisicaoSelecionada]="requisicaoSelecionada" [funcionarioLogado]="funcionarioLogado" (displayChange)="onDialogClose($event)"></app-lista>

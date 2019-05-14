@@ -23,6 +23,7 @@ export class MovimentacaoComponent implements OnInit {
   requisicaoSelecionada: Requisicao;
   edit: boolean;
   displayDialogMovimentacao: boolean;
+  displayDialogMovimentacoes: boolean;
   form: FormGroup;
   funcionarioLogado: Funcionario;
   listaStatus: string[];
@@ -83,10 +84,14 @@ export class MovimentacaoComponent implements OnInit {
     this.displayDialogMovimentacao = true;
   }
 
-  verRequisicao(requisicao: Requisicao, movimentacao: Movimentacao) {
-    this.displayDialogMovimentacao = true;
+  verMovimentacoes(requisicao: Requisicao) {
+    this.requisicaoSelecionada = requisicao;
     this.movimentacoes = requisicao.movimentacoes;
-    this.form.setValue(movimentacao);
+    this.displayDialogMovimentacoes = true;
+  }
+
+  onDialogClose(event) {
+    this.displayDialogMovimentacoes = event;
   }
 
   save() {
