@@ -19,6 +19,7 @@
       <table class="table table-striped table-hover table-bordered col-centered">
         <thead class="thead-dark">
           <tr>
+            <th class="text-center">Foto</th>
             <th class="text-center">Nome</th>
             <th class="text-center">Email</th>
             <th class="text-center">Departamento</th>
@@ -28,6 +29,9 @@
         </thead>
         <tbody>
           <tr *ngFor="let funcionario of funcionarios$ | async | filter :  departamentoFiltro">
+            <td class="text-center">
+              <img [src]="funcionario.foto || '/assets/imgs/no-image.png'" style="width: 100px" class="img-fluid">
+            </td>
             <td class="text-center">{{funcionario.nome}}</td>
             <td class="text-center">{{funcionario.email}}</td>
             <td class="text-center">{{funcionario.departamento.nome}}</td>
@@ -92,6 +96,16 @@
           <input type="text" pInputText formControlName="funcao" />
         </div>
       </div>
+      <div class="ui-grid-row mb-3">
+        <div class="ui-grid-col-4">
+          <label for="foto">Foto:</label>
+        </div>
+        <div class="ui-grid-col-8 ">
+         <input type="file" class="form-control" (change)="upload($event)" />
+         <progress style="width: 100%;" max="100" [value]="(uploadPercent | async)"></progress>
+        </div>
+      </div>
+
     </form>
   </div>
   <p-footer>

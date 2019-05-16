@@ -1,8 +1,6 @@
 import { Movimentacao, Requisicao } from './../../../../models/requisicao.model';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { RequisicaoService } from 'src/app/services/requisicao.service';
-import { AuthenticationService } from 'src/app/services/authentication.service';
-import { FuncionarioService } from 'src/app/services/funcionario.service';
 import { FormBuilder, FormControl, Validators, FormGroup } from '@angular/forms';
 import { Funcionario } from 'src/app/models/funcionario.model';
 import Swal from 'sweetalert2';
@@ -37,7 +35,6 @@ export class ListaComponent implements OnInit {
   }
 
 
-
   configForm() {
     this.form = this.fb.group({
       funcionario: new FormControl('', Validators.required),
@@ -47,6 +44,10 @@ export class ListaComponent implements OnInit {
     })
   }
 
+  carregaStatus() {
+    this.listaStatus = ['Aberto', 'Pendente', 'Processando', 'Não autorizada', 'Finalizado'];
+  }
+
   selecionaMovimento(mov: Movimentacao, index: number) {
     this.edit = true;
     this.displayDialogMovimentacao = true;
@@ -54,12 +55,11 @@ export class ListaComponent implements OnInit {
     this.indexMovimentacoes = index
   }
 
-
-  carregaStatus() {
-    this.listaStatus = ['Aberto', 'Pendente', 'Processando', 'Não autorizada', 'Finalizado'];
+  onClose() {
+    this.displayChange.emit(false);
   }
 
-  save() {
+  update() {
     this.movimentacoes[this.indexMovimentacoes] = this.form.value
     this.requisicaoSelecionada.movimentacoes = this.movimentacoes;
     this.requisicaoSelecionada.status = this.form.controls['status'].value
@@ -74,6 +74,10 @@ export class ListaComponent implements OnInit {
         Swal.fire(`Erro ao ${!this.edit ? 'salvo' : 'atualizado'} o Movimentação.`, `Detalhes: ${erro}`, 'error');
       })
     this.form.reset()
+  }
+
+  remove(array, element) {
+    return array.filter(el => el !== element);
   }
 
   delete(mov: Movimentacao) {
@@ -96,14 +100,4 @@ export class ListaComponent implements OnInit {
       }
     })
   }
-
-  remove(array, element) {
-    return array.filter(el => el !== element);
-  }
-
-  onClose() {
-    this.displayChange.emit(false);
-  }
-
-
 }
