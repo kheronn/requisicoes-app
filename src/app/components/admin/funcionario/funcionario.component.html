@@ -101,7 +101,7 @@
           <label for="foto">Foto:</label>
         </div>
         <div class="ui-grid-col-8 ">
-         <input type="file" class="form-control" (change)="upload($event)" />
+         <input type="file" #inputFile class="form-control" (change)="upload($event)" />
          <progress style="width: 100%;" max="100" [value]="(uploadPercent | async)"></progress>
         </div>
       </div>

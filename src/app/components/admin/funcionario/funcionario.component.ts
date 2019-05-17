@@ -1,7 +1,7 @@
 import { Departamento } from './../../../models/departamento.model';
 import { DepartamentoService } from './../../../services/departamento.service';
 import { FuncionarioService } from './../../../services/funcionario.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Observable } from 'rxjs';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import Swal from 'sweetalert2';
@@ -23,6 +23,7 @@ export class FuncionarioComponent implements OnInit {
   form: FormGroup;
 
   //Para upload da foto
+  @ViewChild('inputFile') inputFile: ElementRef;
   uploadPercent: Observable<number>;
   downloadURL: Observable<string>;
   task: AngularFireUploadTask;
@@ -114,6 +115,8 @@ export class FuncionarioComponent implements OnInit {
       });
     });
     this.uploadPercent = this.task.percentageChanges();
+    this.inputFile.nativeElement.value = '';
+
   }
 
 
