@@ -28,8 +28,6 @@ export class FuncionarioComponent implements OnInit {
   downloadURL: Observable<string>;
   task: AngularFireUploadTask;
   complete: boolean;
-  url: string;
-
 
   constructor(
     private storage: AngularFireStorage,
@@ -100,7 +98,6 @@ export class FuncionarioComponent implements OnInit {
   }
 
   async upload(event) {
-
     this.complete = false;
     const file = event.target.files[0];
     const path = `funcionarios/${new Date().getTime().toString()}`;
@@ -116,7 +113,6 @@ export class FuncionarioComponent implements OnInit {
     });
     this.uploadPercent = this.task.percentageChanges();
     this.inputFile.nativeElement.value = '';
-
   }
 
 

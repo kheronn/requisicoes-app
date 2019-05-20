@@ -7,8 +7,8 @@ admin.initializeApp();
 let mailTransport = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: 'seu-gmail',
-    pass: 'sua-senha'
+    user: 'seue-mail@gmail',
+    pass: 'senha'
   }
 });
 
@@ -19,38 +19,23 @@ exports.createUser = functions.firestore
     const funcionario = snap.data();
     const email = funcionario.email;
     const nome = funcionario.nome;
-    const departamento = funcionario.departamento.nome;
-    const texto = `<h2>  Dados de acesso ao Sistema de Requisições
-                  <br> Bem vindo  <b>${nome}</b>.  </h2>
-                  <h3> Acesso as requisisções para o departamento  ${departamento} </h3>
-                  <h4> A senha para acesso é: <h4> <b> 123456 </b>  <br>  `
 
 
-    admin.auth().createUser({
+    return admin.auth().createUser({
       uid: `${email}`,
       email: `${email}`,
       emailVerified: false,
       password: `123456`,
       displayName: `${nome}`,
       disabled: false
+    }).then((userRecord) => {
+      console.log('Usuário registrado com sucesso')
+      return userRecord;
     })
-      .then((userRecord) => {
-        const mailOptions = {
-          from: `<noreply@firebase.com>`,
-          to: email,
-        };
-        mailOptions.subject = `Sistema de Requisições | Dados de acesso`;
-        mailOptions.html = `${texto}`;
-        mailTransport.sendMail(mailOptions).then(() => {
-          console.log('Email enviado para:', email);
-          return null;
-        });
-
-      })
-      .catch(function (error) {
+      .catch((error) => {
         console.log("Não foi possível criar o usuário:", error);
       });
-  });
+  })
 
 
 
@@ -68,17 +53,17 @@ exports.notifyUser = functions.firestore
 
       const texto = `<h2> Sua requisição recebeu uma atualização! </h2>
                      <h3> Descricao:   ${movimentacao.descricao} </h3>
-                     <h4> Status:  ${movimentacao.descricao}  <br> `
+                     <h4> Status:  ${movimentacao.status}  <br> `
       const mailOptions = {
         from: `<noreply@firebase.com>`,
         to: email,
+        subject = `Sistema de Requisições | Processamento de Requisições`,
+        html = `${texto}`
       };
-      mailOptions.subject = `Sistema de Requisições | Processamento de Requisições`;
-      mailOptions.html = `${texto}`;
-      mailTransport.sendMail(mailOptions).then(() => {
+      return mailTransport.sendMail(mailOptions).then(() => {
         console.log('Email enviado para:', email);
         return null;
-      }).catch(function (error) {
+      }).catch((error) => {
         console.log("Não foi possível notificar  o usuário:", error);
       });
     }
