@@ -7,7 +7,7 @@ admin.initializeApp();
 let mailTransport = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: 'seue-mail@gmail',
+    user: 'email@gmail.com',
     pass: 'senha'
   }
 });
@@ -41,7 +41,7 @@ exports.createUser = functions.firestore
 
 exports.notifyUser = functions.firestore
   .document('/requisicoes/{documentId}')
-  .onUpdate((snap, context) => {
+  .onUpdate((snap) => {
 
     const requisicao = snap.after.data();
     const solicitante = requisicao.solicitante;
@@ -57,8 +57,8 @@ exports.notifyUser = functions.firestore
       const mailOptions = {
         from: `<noreply@firebase.com>`,
         to: email,
-        subject = `Sistema de Requisições | Processamento de Requisições`,
-        html = `${texto}`
+        subject : `Sistema de Requisições | Processamento de Requisições`,
+        html : `${texto}`
       };
       return mailTransport.sendMail(mailOptions).then(() => {
         console.log('Email enviado para:', email);
