@@ -23,7 +23,7 @@ export class FuncionarioComponent implements OnInit {
   form: FormGroup;
 
   //Para upload da foto
-  @ViewChild('inputFile') inputFile: ElementRef;
+  @ViewChild('inputFile', { static: true }) inputFile: ElementRef;
   uploadPercent: Observable<number>;
   downloadURL: Observable<string>;
   task: AngularFireUploadTask;
