@@ -5,12 +5,12 @@
 export const environment = {
   production: false,
   firebase: {
-    apiKey: "AIzaSyCng_cba2SpK1MVIl478IUInfE5v2UvIxU",
-    authDomain: "requisicoes-app.firebaseapp.com",
-    databaseURL: "https://requisicoes-app.firebaseio.com",
-    projectId: "requisicoes-app",
-    storageBucket: "requisicoes-app.appspot.com",
-    messagingSenderId: "192989744894"
+    apiKey: "SUA-CHAVE",
+    authDomain: "SUA-CHAVE",
+    databaseURL: "SUA-CHAVE",
+    projectId: "SUA-CHAVE",
+    storageBucket: "SUA-CHAVE",
+    messagingSenderId: "SUA-CHAVE"
   }
 };
 
