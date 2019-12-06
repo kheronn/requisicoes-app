@@ -6,5 +6,5 @@ export interface ICrud<T extends Model> {
   get(id: string): Observable<T>;
   list(): Observable<T[]>;
   createOrUpdate(item: T): Promise<T>;
-  delete(id: string): void;
+  delete(id: string): Promise<void>;
 }
