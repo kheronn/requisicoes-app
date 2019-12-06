@@ -1,11 +1,12 @@
 import { Departamento } from './../../../models/departamento.model';
 import { DepartamentoService } from './../../../services/departamento.service';
 import { FuncionarioService } from './../../../services/funcionario.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Observable } from 'rxjs';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { Funcionario } from 'src/app/models/funcionario.model';
+import { AngularFireUploadTask, AngularFireStorage } from '@angular/fire/storage';
 
 @Component({
   selector: 'app-funcionario',
@@ -21,7 +22,18 @@ export class FuncionarioComponent implements OnInit {
   displayDialogFuncionario: boolean;
   form: FormGroup;
 
-  constructor(private funcionarioService: FuncionarioService, private departamentoService: DepartamentoService, private fb: FormBuilder) { }
+  //Para upload da foto
+  @ViewChild('inputFile', { static: true }) inputFile: ElementRef;
+  uploadPercent: Observable<number>;
+  downloadURL: Observable<string>;
+  task: AngularFireUploadTask;
+  complete: boolean;
+
+  constructor(
+    private storage: AngularFireStorage,
+    private funcionarioService: FuncionarioService,
+    private departamentoService: DepartamentoService,
+    private fb: FormBuilder) { }
 
   ngOnInit() {
     this.funcionarios$ = this.funcionarioService.list();
@@ -36,7 +48,8 @@ export class FuncionarioComponent implements OnInit {
       nome: new FormControl('', Validators.required),
       email: new FormControl('', [Validators.required, Validators.email]),
       funcao: new FormControl(''),
-      departamento: new FormControl('', Validators.required)
+      departamento: new FormControl('', Validators.required),
+      foto: new FormControl()
     })
   }
 
@@ -84,6 +97,23 @@ export class FuncionarioComponent implements OnInit {
     })
   }
 
+  async upload(event) {
+    this.complete = false;
+    const file = event.target.files[0];
+    const path = `funcionarios/${new Date().getTime().toString()}`;
+    const fileRef = this.storage.ref(path);
+    this.task = this.storage.upload(path, file);
+    this.task.then(up => {
+      fileRef.getDownloadURL().subscribe(url => {
+        this.complete = true;
+        this.form.patchValue({
+          foto: url
+        })
+      });
+    });
+    this.uploadPercent = this.task.percentageChanges();
+    this.inputFile.nativeElement.value = '';
+  }
 
 
 }

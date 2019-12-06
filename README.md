@@ -1,27 +1,25 @@
-# RequisicoesApp
+# Angular 8 e Firebase: construindo uma aplicação integrada com a plataforma do Google 
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.1.
+No desenvolvimento de aplicações web e mobile, há disponível uma quantidade expressiva de linguagens, frameworks e ferramentas. Nessa imensidão, é comum o desenvolvedor iniciante ficar perdido e até inseguro sobre qual o melhor caminho para a construção neste segmento.
 
-## Development server
+## Sobre o livro
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
+[![](https://cdn.shopify.com/s/files/1/0155/7645/products/p_8b0dbdac-77ec-4194-afd9-8bdbd1ac7d42_large.jpg?v=1573153826)](https://www.casadocodigo.com.br/products/livro-angular-firebase)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## Build
+O objetivo  é apresentar as principais características da plataforma, utilizando a versão 8, através da implementação de uma aplicação que guiará
+os capítulos. Logo, você não vai encontrar um capítulo teórico dedicado aos conceitos de componentes, serviços, roteamentos ou
+validação de formulários, porém, vai, sim, explorar esses tópicos identificados dentro de um requisito do projeto.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
-## Running unit tests
+## Respositório
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+É possivel acompanhar capítulo a capítulo no desenvolvimento do projeto explorando a funcionalidade abordada ou baixar o projeto completo.
 
-## Running end-to-end tests
+## Casa do Código
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+[Clique aqui](https://www.casadocodigo.com.br/products/livro-angular-firebase)
 
-## Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+

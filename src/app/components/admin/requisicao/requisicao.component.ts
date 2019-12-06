@@ -9,6 +9,7 @@ import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
 import { RequisicaoService } from 'src/app/services/requisicao.service';
 import { DepartamentoService } from 'src/app/services/departamento.service';
 import Swal from 'sweetalert2';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-requisicao',
@@ -31,19 +32,23 @@ export class RequisicaoComponent implements OnInit {
     private fb: FormBuilder) { }
 
   ngOnInit() {
-    this.requisicoes$ = this.requisicaoService.list();
     this.departamentos$ = this.departamentoService.list();
     this.configForm();
     this.recuperaFuncionario()
   }
 
-  recuperaFuncionario() {
-    this.auth.authUser()
+  async recuperaFuncionario() {
+    await this.auth.authUser()
       .subscribe(dados => {
         this.funcionarioService.getFuncionarioLogado(dados.email)
           .subscribe(funcionarios => {
-            this.funcionarioLogado = funcionarios[0]
+            this.funcionarioLogado = funcionarios[0];
+            this.requisicoes$ = this.requisicaoService.list()
+              .pipe(
+                map((reqs: Requisicao[]) => reqs.filter(r => r.solicitante.email === this.funcionarioLogado.email))
+              )
           })
+
       })
   }
 
@@ -55,7 +60,8 @@ export class RequisicaoComponent implements OnInit {
       dataAbertura: new FormControl(''),
       ultimaAtualizacao: new FormControl(''),
       status: new FormControl(''),
-      descricao: new FormControl('', Validators.required)
+      descricao: new FormControl('', Validators.required),
+      movimentacoes: new FormControl('')
     })
   }
 
@@ -69,9 +75,10 @@ export class RequisicaoComponent implements OnInit {
   setValorPadrao() {
     this.form.patchValue({
       solicitante: this.funcionarioLogado,
-      status: 'aberto',
+      status: 'Aberto',
       dataAbertura: new Date(),
-      ultimaAtualizacao: new Date()
+      ultimaAtualizacao: new Date(),
+      movimentacoes: []
     })
   }
 
@@ -85,7 +92,7 @@ export class RequisicaoComponent implements OnInit {
     this.requisicaoService.createOrUpdate(this.form.value)
       .then(() => {
         this.displayDialogRequisicao = false;
-        Swal.fire(`Funcionário ${!this.edit ? 'salvo' : 'atualizado'} com sucesso.`, '', 'success')
+        Swal.fire(`Requisição ${!this.edit ? 'salvo' : 'atualizado'} com sucesso.`, '', 'success')
         this.displayDialogRequisicao = false;
       })
       .catch((erro) => {

@@ -2,12 +2,7 @@
 
   <div class="card col-lg-12 bg-light col-centered">
     <div class="card-header">
-      <h3> Minhas Requisições
-        <button type="button" style="margin-right: 0px" (click)="add()" class="text-right btn btn-outline-info btn-lg">
-          <i class="fa fa-plus-circle" aria-hidden="true"></i>
-        </button>
-      </h3>
-
+      <h3> Requisições solicitadas </h3>
     </div>
     <div class="card-body col-lg-12 col-centered">
       <table class="table table-striped table-hover table-bordered col-centered">
@@ -23,8 +18,8 @@
         </thead>
         <tbody>
           <tr *ngFor="let requisicao of requisicoes$ | async ">
-            <td class="text-center">{{requisicao.dataAbertura.toDate() | date : 'dd/MM/yyyy HH:mm'}}</td>
-            <td class="text-center">{{requisicao.ultimaAtualizacao?.toDate() | date : 'dd/MM/yyyy HH:mm'}}</td>
+            <td class="text-center">{{requisicao.dataAbertura?.toDate() | date : 'dd/MM/yyyy HH:mm'}}</td>
+            <td class="text-center">{{requisicao.ultimaAtualizacao?.seconds * 1000  | date : 'dd/MM/yyyy HH:mm' }}</td>
             <td class="text-center">{{requisicao.destino.nome}}</td>
             <td class="text-center">{{requisicao.status}}</td>
             <td class="text-center">
@@ -33,34 +28,54 @@
               </span>
             </td>
             <td class="text-center">
-              <button type="button" (click)="selecionaRequisicao(requisicao)" class="btn btn-success  ">
-                <i class="fas fa-edit"></i>
+              <button type="button" (click)="add(requisicao)" class="btn btn-info">
+                <i class="fa fa-plus-circle"></i>
               </button>
-              <button type="button" (click)="delete(requisicao)" class="btn btn-danger  ">
-                <i class="fas fa-trash"></i>
+              <button type="button" (click)="verMovimentacoes(requisicao)" class="btn btn-success">
+                <i class="far fa-list-alt"></i>
               </button>
             </td>
           </tr>
         </tbody>
       </table>
+      <br>
 
-   </div>
+      <div class="text-center">
+        <a [routerLink]="['/admin/painel']" class="btn btn-primary ">
+          <i class="fa fa-search" aria-hidden="true"></i>
+          Voltar</a>
+      </div>
+    </div>
   </div>
 </div>
 
-<app-movimentacao *ngIf="funcionarioLogado" [funcionarioLogado]="funcionarioLogado"></app-movimentacao>
-
 
 <p-dialog header="Dados da Requisição" [minWidth]="600" [contentStyle]="{'overflow':'visible'}"
-  [(visible)]="displayDialogRequisicao" [responsive]="true" [modal]="true">
+  [(visible)]="displayDialogMovimentacao" [responsive]="true" [modal]="true">
   <div class="ui-grid ui-grid-responsive ui-fluid" *ngIf="form.value">
+    <div class="ui-grid-row mb-3">
+      <div class="ui-grid-col-4">
+        <label for="departamento">Solicitante:</label>
+      </div>
+      <div class="ui-grid-col-8 text-primary">
+        {{requisicaoSelecionada?.solicitante.nome}}
+      </div>
+    </div>
+    <div class="ui-grid-row mb-3">
+      <div class="ui-grid-col-4">
+        <label for="descricao">Solicitação:</label>
+      </div>
+      <div class="ui-grid-col-8 ">
+        <textarea rows="5" cols="30" disabled pInputTextarea [value]="requisicaoSelecionada?.descricao"></textarea>
+      </div>
+    </div>
     <form [formGroup]="form">
       <div class="ui-grid-row mb-3">
         <div class="ui-grid-col-4">
-          <label for="departamento">Destino*:</label>
+          <label for="departamento">Status*:</label>
         </div>
         <div class="ui-grid-col-8 ">
-          <ng-select [items]="departamentos$ | async" bindLabel="nome" formControlName="destino">
+          <ng-select [items]="listaStatus" formControlName="status">
           </ng-select>
         </div>
       </div>
@@ -75,7 +90,7 @@
     </form>
   </div>
   <p-footer>
-    <div *ngIf="form.controls['destino'].errors || form.controls['descricao'].errors" class="text-warning text-left ">
+    <div *ngIf="form.controls['status'].errors || form.controls['descricao'].errors" class="text-warning text-left ">
       *Preenchimento Obrigatório</div>
     <div class="ui-dialog-buttonpane ">
       <button [disabled]="!form.valid" type="button" class="btn btn-primary" (click)="save()">
@@ -84,3 +99,6 @@
     </div>
   </p-footer>
 </p-dialog>
+
+<app-lista [displayDialogMovimentacoes]="displayDialogMovimentacoes" [movimentacoes]="movimentacoes"
+  [requisicaoSelecionada]="requisicaoSelecionada" [funcionarioLogado]="funcionarioLogado" (displayChange)="onDialogClose($event)"></app-lista>
