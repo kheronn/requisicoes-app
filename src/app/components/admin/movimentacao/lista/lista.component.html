@@ -1,4 +1,4 @@
-<p-dialog header="Movimentações" [minWidth]="600" [contentStyle]="{'overflow':'visible'}"
+<p-dialog header="Movimentações" [style]="{ width: '80vw' }" [contentStyle]="{'overflow':'visible'}"
   [(visible)]="displayDialogMovimentacoes" (onHide)="onClose()" [responsive]="true" [modal]="true">
 
   <div class="col-lg-12 bg-light col-centered">
@@ -33,7 +33,7 @@
 </p-dialog>
 
 
-<p-dialog header="Dados da Requisição" [minWidth]="600" [contentStyle]="{'overflow':'visible'}"
+<p-dialog header="Dados da Requisição" [style]="{ width: '80vw' }" [contentStyle]="{'overflow':'visible'}"
   [(visible)]="displayDialogMovimentacao" [responsive]="true" [modal]="true">
   <div class="ui-grid ui-grid-responsive ui-fluid" *ngIf="form.value">
 
@@ -57,13 +57,13 @@
       </div>
     </form>
   </div>
-  <p-footer>
+  <p-toolbar>
     <div *ngIf="form.controls['status'].errors || form.controls['descricao'].errors" class="text-warning text-left ">
       *Preenchimento Obrigatório</div>
-    <div class="ui-dialog-buttonpane ">
+    <div class="p-toolbar-group-right">
       <button [disabled]="!form.valid" type="button" class="btn btn-primary" (click)="update()">
         <i class="fas fa-check-circle"></i> {{edit ? 'Atualizar' : 'Salvar'}}
       </button>
     </div>
-  </p-footer>
+  </p-toolbar>
 </p-dialog>

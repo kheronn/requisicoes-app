@@ -44,14 +44,14 @@
         </tbody>
       </table>
 
-   </div>
+    </div>
   </div>
 </div>
 
 <app-movimentacao *ngIf="funcionarioLogado" [funcionarioLogado]="funcionarioLogado"></app-movimentacao>
 
 
-<p-dialog header="Dados da Requisição" [minWidth]="600" [contentStyle]="{'overflow':'visible'}"
+<p-dialog header="Dados da Requisição" [style]="{ width: '80vw' }" [contentStyle]="{'overflow':'visible'}"
   [(visible)]="displayDialogRequisicao" [responsive]="true" [modal]="true">
   <div class="ui-grid ui-grid-responsive ui-fluid" *ngIf="form.value">
     <form [formGroup]="form">
@@ -74,13 +74,13 @@
       </div>
     </form>
   </div>
-  <p-footer>
+  <p-toolbar>
     <div *ngIf="form.controls['destino'].errors || form.controls['descricao'].errors" class="text-warning text-left ">
       *Preenchimento Obrigatório</div>
-    <div class="ui-dialog-buttonpane ">
+    <div class="p-toolbar-group-right">
       <button [disabled]="!form.valid" type="button" class="btn btn-primary" (click)="save()">
         <i class="fas fa-check-circle"></i> {{edit ? 'Atualizar' : 'Salvar'}}
       </button>
     </div>
-  </p-footer>
+  </p-toolbar>
 </p-dialog>

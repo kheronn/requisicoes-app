@@ -12,18 +12,19 @@ import {ToggleButtonModule} from 'primeng/togglebutton';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import {CheckboxModule} from 'primeng/checkbox';
 import {CalendarModule} from 'primeng/calendar';
+import {ToolbarModule} from 'primeng/toolbar';
 import {TabViewModule} from 'primeng/tabview';
 
 
 @NgModule({
   imports: [
     CommonModule,ButtonModule,FieldsetModule, InputMaskModule,MessagesModule, CheckboxModule ,
-    DialogModule,InputTextModule,InputTextareaModule,DropdownModule,
+    DialogModule,InputTextModule,InputTextareaModule,DropdownModule,ToolbarModule,
     ConfirmDialogModule,CalendarModule,TabViewModule, ToggleButtonModule
   ],
   exports:[
     ButtonModule,FieldsetModule, InputMaskModule,MessagesModule, CheckboxModule ,
-    DialogModule,InputTextModule,InputTextareaModule,DropdownModule,
+    DialogModule,InputTextModule,InputTextareaModule,DropdownModule, ToolbarModule,
     ConfirmDialogModule,CalendarModule,TabViewModule, ToggleButtonModule
 
   ],

@@ -83,7 +83,7 @@ export class FuncionarioComponent implements OnInit {
     Swal.fire({
       title: 'Confirma a exclusão do Funcionário?',
       text: "",
-      type: 'warning',
+      icon: 'warning',
       showCancelButton: true,
       confirmButtonText: 'Sim',
       cancelButtonText: 'Não'

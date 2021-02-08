@@ -44,7 +44,7 @@
 </div>
 
 
-<p-dialog header="Dados do departamento" [minWidth]="600" [contentStyle]="{'overflow':'visible'}"
+<p-dialog header="Dados do departamento" [style]="{ width: '80vw' }" [contentStyle]="{'overflow':'visible'}"
   [(visible)]="displayDialogDepartamento" [responsive]="true" [modal]="true">
   <div class="ui-grid ui-grid-responsive ui-fluid" *ngIf="form.value">
     <form [formGroup]="form">
@@ -66,11 +66,11 @@
       </div>
     </form>
   </div>
-  <p-footer>
-    <div class="ui-dialog-buttonpane ">
+  <p-toolbar>
+    <div class="p-toolbar-group-right">
       <button [disabled]="!form.valid" type="button" class="btn btn-primary"  (click)="save()">
         <i class="fas fa-check-circle"></i> {{edit ? 'Atualizar' : 'Salvar'}}
       </button>
     </div>
-  </p-footer>
+  </p-toolbar>
 </p-dialog>

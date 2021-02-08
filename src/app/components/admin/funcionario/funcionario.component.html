@@ -59,7 +59,7 @@
 </div>
 
 
-<p-dialog header="Dados do funcionário" [minWidth]="600" [contentStyle]="{'overflow':'visible'}"
+<p-dialog header="Dados do funcionário" [style]="{ width: '80vw' }" [contentStyle]="{'overflow':'visible'}"
   [(visible)]="displayDialogFuncionario" [responsive]="true" [modal]="true">
   <div class="ui-grid ui-grid-responsive ui-fluid" *ngIf="form.value">
     <form [formGroup]="form">
@@ -101,19 +101,20 @@
           <label for="foto">Foto:</label>
         </div>
         <div class="ui-grid-col-8 ">
-         <input type="file" #inputFile class="form-control" (change)="upload($event)" />
-         <progress style="width: 100%;" max="100" [value]="(uploadPercent | async)"></progress>
+          <input type="file" #inputFile class="form-control" (change)="upload($event)" />
+          <progress style="width: 100%;" max="100" [value]="(uploadPercent | async)"></progress>
         </div>
       </div>
 
     </form>
   </div>
-  <p-footer>
-    <div *ngIf="form.controls['nome'].errors || form.controls['email'].errors || form.controls['departamento'].errors "class="text-warning text-left ">*Preenchimento Obrigatório</div>
-    <div class="ui-dialog-buttonpane ">
+  <p-toolbar>
+    <div *ngIf="form.controls['nome'].errors || form.controls['email'].errors || form.controls['departamento'].errors "
+      class="text-warning text-left ">*Preenchimento Obrigatório</div>
+    <div class="p-toolbar-group-right">
       <button [disabled]="!form.valid" type="button" class="btn btn-primary" (click)="save()">
         <i class="fas fa-check-circle"></i> {{edit ? 'Atualizar' : 'Salvar'}}
       </button>
     </div>
-  </p-footer>
+  </p-toolbar>
 </p-dialog>

@@ -101,7 +101,7 @@ export class MovimentacaoComponent implements OnInit {
     Swal.fire({
       title: 'Confirma a exclusão do Requisição?',
       text: "",
-      type: 'warning',
+      icon: 'warning',
       showCancelButton: true,
       confirmButtonText: 'Sim',
       cancelButtonText: 'Não'
