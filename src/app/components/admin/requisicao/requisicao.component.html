@@ -53,34 +53,25 @@
 
 <p-dialog header="Dados da Requisição" [style]="{ width: '80vw' }" [contentStyle]="{'overflow':'visible'}"
   [(visible)]="displayDialogRequisicao" [responsive]="true" [modal]="true">
-  <div class="ui-grid ui-grid-responsive ui-fluid" *ngIf="form.value">
-    <form [formGroup]="form">
-      <div class="ui-grid-row mb-3">
-        <div class="ui-grid-col-4">
-          <label for="departamento">Destino*:</label>
-        </div>
-        <div class="ui-grid-col-8 ">
-          <ng-select [items]="departamentos$ | async" bindLabel="nome" formControlName="destino">
-          </ng-select>
-        </div>
-      </div>
-      <div class="ui-grid-row mb-3">
-        <div class="ui-grid-col-4">
-          <label for="descricao">Descricao*:</label>
-        </div>
-        <div class="ui-grid-col-8 ">
-          <textarea rows="5" cols="30" pInputTextarea formControlName="descricao"></textarea>
-        </div>
-      </div>
-    </form>
-  </div>
-  <p-toolbar>
-    <div *ngIf="form.controls['destino'].errors || form.controls['descricao'].errors" class="text-warning text-left ">
-      *Preenchimento Obrigatório</div>
-    <div class="p-toolbar-group-right">
-      <button [disabled]="!form.valid" type="button" class="btn btn-primary" (click)="save()">
-        <i class="fas fa-check-circle"></i> {{edit ? 'Atualizar' : 'Salvar'}}
-      </button>
+
+  <form [formGroup]="form" class="p-fluid p-formgrid p-grid" *ngIf="form.value">
+    <div class="p-field p-col-12 p-md-12">
+      <label for="departamento">Destino*:</label>
+      <ng-select [items]="departamentos$ | async" bindLabel="nome" formControlName="destino">
+      </ng-select>
     </div>
-  </p-toolbar>
+    <div class="p-field p-col-12 p-md-12">
+      <label for="descricao">Descricao*:</label>
+      <textarea rows="5" cols="30" pInputTextarea formControlName="descricao"></textarea>
+    </div>
+  </form>
+
+
+  <div *ngIf="form.controls['destino'].errors || form.controls['descricao'].errors" class="text-warning text-left ">
+    *Preenchimento Obrigatório</div>
+  <div class="p-d-flex p-jc-end">
+    <button [disabled]="!form.valid" type="button" class="btn btn-primary" (click)="save()">
+      <i class="fas fa-check-circle"></i> {{edit ? 'Atualizar' : 'Salvar'}}
+    </button>
+  </div>
 </p-dialog>
