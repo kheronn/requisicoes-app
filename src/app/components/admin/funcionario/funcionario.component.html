@@ -65,7 +65,7 @@
     <form [formGroup]="form" class="p-fluid p-formgrid p-grid">
 
       <div class="p-field p-col-12 p-md-6">
-        <label for="ocorrencia">Nome*:</label>
+        <label for="nome">Nome*:</label>
         <input type="text" pInputText formControlName="nome" />
       </div>
 
@@ -95,7 +95,7 @@
   <div *ngIf="form.controls['nome'].errors || form.controls['email'].errors || form.controls['departamento'].errors "
     class="text-warning  ">*Preenchimento Obrigatório</div>
 
-    <div class="p-d-flex p-jc-end ">
+    <div class="p-d-flex p-jc-end">
       <button [disabled]="!form.valid" type="button" class="btn btn-primary " (click)="save()">
         <i class="fas fa-check-circle"></i> {{edit ? 'Atualizar' : 'Salvar'}}
       </button>

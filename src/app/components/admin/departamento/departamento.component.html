@@ -47,30 +47,23 @@
 <p-dialog header="Dados do departamento" [style]="{ width: '80vw' }" [contentStyle]="{'overflow':'visible'}"
   [(visible)]="displayDialogDepartamento" [responsive]="true" [modal]="true">
   <div class="ui-grid ui-grid-responsive ui-fluid" *ngIf="form.value">
-    <form [formGroup]="form">
-      <div class="ui-grid-row mb-3">
-        <div class="ui-grid-col-4">
-          <label for="ocorrencia">Nome*:</label>
-        </div>
-        <div class="ui-grid-col-8 ">
-          <input type="text" pInputText formControlName="nome"  />
-        </div>
+    <form [formGroup]="form" class="p-fluid p-formgrid p-grid">
+      <div class="p-field p-col-12 p-md-6">
+        <label for="ocorrencia">Nome*:</label>
+        <input type="text" pInputText formControlName="nome" />
       </div>
-      <div class="ui-grid-row mb-3">
-        <div class="ui-grid-col-4">
-          <label for="ocorrencia">Telefone:</label>
-        </div>
-        <div class="ui-grid-col-8 ">
-          <p-inputMask formControlName="telefone" mask="(99)9999-9999"></p-inputMask>
-        </div>
+
+      <div class="p-field p-col-12 p-md-6">
+        <label for="ocorrencia">Telefone:</label>
+        <p-inputMask formControlName="telefone" mask="(99)9999-9999"></p-inputMask>
       </div>
     </form>
   </div>
-  <p-toolbar>
-    <div class="p-toolbar-group-right">
-      <button [disabled]="!form.valid" type="button" class="btn btn-primary"  (click)="save()">
-        <i class="fas fa-check-circle"></i> {{edit ? 'Atualizar' : 'Salvar'}}
-      </button>
-    </div>
-  </p-toolbar>
+
+  <div class="p-d-flex p-jc-end">
+    <button [disabled]="!form.valid" type="button" class="btn btn-primary" (click)="save()">
+      <i class="fas fa-check-circle"></i> {{edit ? 'Atualizar' : 'Salvar'}}
+    </button>
+  </div>
+
 </p-dialog>
