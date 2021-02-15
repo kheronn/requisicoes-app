@@ -49,12 +49,12 @@
   <div class="ui-grid ui-grid-responsive ui-fluid" *ngIf="form.value">
     <form [formGroup]="form" class="p-fluid p-formgrid p-grid">
       <div class="p-field p-col-12 p-md-6">
-        <label for="ocorrencia">Nome*:</label>
+        <label for="nome">Nome*:</label>
         <input type="text" pInputText formControlName="nome" />
       </div>
 
       <div class="p-field p-col-12 p-md-6">
-        <label for="ocorrencia">Telefone:</label>
+        <label for="telefone">Telefone:</label>
         <p-inputMask formControlName="telefone" mask="(99)9999-9999"></p-inputMask>
       </div>
     </form>
