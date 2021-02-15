@@ -53,7 +53,6 @@
 
 <p-dialog header="Dados da Requisição" [style]="{ width: '80vw' }" [contentStyle]="{'overflow':'visible'}"
   [(visible)]="displayDialogRequisicao" [responsive]="true" [modal]="true">
-
   <form [formGroup]="form" class="p-fluid p-formgrid p-grid" *ngIf="form.value">
     <div class="p-field p-col-12 p-md-12">
       <label for="departamento">Destino*:</label>
@@ -65,7 +64,6 @@
       <textarea rows="5" cols="30" pInputTextarea formControlName="descricao"></textarea>
     </div>
   </form>
-
 
   <div *ngIf="form.controls['destino'].errors || form.controls['descricao'].errors" class="text-warning text-left ">
     *Preenchimento Obrigatório</div>

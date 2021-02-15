@@ -1,14 +1,5 @@
-.ui-grid-row div {
-  padding: 4px 10px
-}
-
-.ui-grid-row div label {
+label {
   font-weight: bold;
-}
-
-.col-centered {
-  float: none;
-  margin: 0 auto;
 }
 
 .btn {
