@@ -22,7 +22,7 @@
     "@angular/platform-browser-dynamic": "~11.1.2",
     "@angular/router": "~11.1.2",
     "@ng-select/ng-select": "^6.1.0",
-    "class-transformer": "^0.2.0",
+    "class-transformer": "^0.3.1",
     "core-js": "^2.5.4",
     "firebase": "^8.2.6",
     "primeflex": "^2.0.0",
