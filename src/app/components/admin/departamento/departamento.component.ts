@@ -20,8 +20,8 @@ export class DepartamentoComponent implements OnInit {
   constructor(private departamentoService: DepartamentoService, private fb: FormBuilder) { }
 
   ngOnInit() {
-    this.departamentos$ = this.departamentoService.list()
-    this.configForm()
+    this.departamentos$ = this.departamentoService.listWithMetadata();
+    this.configForm();
   }
 
   configForm() {
