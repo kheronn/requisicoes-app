@@ -23,6 +23,17 @@ export abstract class ServiceFirebase<T extends Model> implements ICrud<T> {
     return this.ref.valueChanges()
   }
 
+  listWithMetadata(): Observable<T[]> {
+    const collection = this.ref.snapshotChanges().pipe(
+      map(actions => actions.map(a => {
+        const data = a.payload.doc.data();
+        const id = a.payload.doc.id;
+        return { ...data, id }
+      }))
+    );
+    return collection;
+  }
+
   createOrUpdate(item: T): Promise<any> {
     let id = item.id;
     if (!item)
